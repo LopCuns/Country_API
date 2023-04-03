@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/styles.css">
+    <title>Country API</title>
+</head>
+<body>
+    <header class="pageHeader">
+        <h1 class="pageHeader__title">Country API</h1>
+        <form class="pageHeader__search" id="search">
+            <input type="search" placeholder="search for a country..." class="pageHeader__search__input" name="countryName" id="searchInput">
+            <img alt="search" src="public/assets/busqueda.png" class="pageHeader__search__icon">
+        </form>
+    </header>
+    <main class="pageMain" id="main">
+        
+    </main>
+    <template id="countryTemplate">
+        <article class="country">
+            <div class="country__flags">
+                <img alt="" src="" class="country__mainFlag">
+                <img alt="" src="" class="country__coatOfArms">
+            </div>
+            <div class="country__info">
+                <p class="country__info__offiname">Official name:<span class="content"></span></p>
+                <p class="country__info__commname">Common name: <span class="content"></span></p>
+                <p class="country__info__capital">Capital city: <span class="content"></span></p>
+                <p class="country__info__lang">Languages:<span class="content"></span></p>
+                <p class="country__info__region">Region:<span class="content"></span></p>
+                <p class="country__info__population">Population:<span class="content"></span> people</p>
+                <p class="country__info__ccTLD">ccTLD: <span class="content"></span></p>
+                <p class="country__info__map">map <a class="country__info__map__link" href="" target="_blank"></a></p>
+            </div>
+        </article>
+    </template>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script type="module" src="public/scripts/main.js"></script>
+</body>
+</html>
