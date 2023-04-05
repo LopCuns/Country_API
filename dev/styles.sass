@@ -1,0 +1,75 @@
+@use 'varsnmixins' as vm
+*,::after,*::before
+    box-sizing: border-box
+body
+    width: 100vw
+    min-height: 100vh
+    margin:0
+    overflow-x: hidden
+h1::selection
+    display: none
+h1
+    cursor: default
+
+// VARIABLES
+$fm : Arial, Helvetica, sans-serif
+
+// MAIN STYLES
+
+.pageHeader
+    @include vm.flex($justify: space-around)
+    gap: 1rem
+    padding: 1rem
+    background-color: #e6f6f6
+    &__title
+        display: inline-block
+        margin:0
+        font-family: $fm
+    &__search
+        @include vm.flex()
+        overflow: hidden
+        border-radius: 10px
+        background-color: #fff
+        &__input
+            padding: .5rem 1rem
+            border: none
+            outline: none
+            font-family: $fm
+        &__icon
+            width: 1.5rem
+
+.country
+    @include vm.flex($justify: space-around)
+    margin-bottom: 2rem
+    background-color: #8ef3f3
+    &__flags
+        @include vm.flex($justify: center)
+        gap: 2rem
+        width: max(50%,20rem)
+        padding: 2rem 0
+        &__mainFlag
+            width: min(100%,20rem)
+        &__coatOfArms
+            width: min(100%,20rem)
+    &__info
+        width: max(50%,20rem)
+        font:
+            size:1.2em
+            family: $fm
+
+.errorMsg
+    background-color: #f49292
+    @include vm.flex($direction: column)
+    width: min(100%,60rem)
+    margin: 5rem auto
+    font-family: $fm
+    &__title
+        font-size: 2em
+    &__img
+        width: min(100%,20rem)
+    &__subtitle
+        font-size: 1.7em
+
+//UTILITIES
+.hidden
+    display: none

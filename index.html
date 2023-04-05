@@ -9,20 +9,24 @@
 </head>
 <body>
     <header class="pageHeader">
-        <h1 class="pageHeader__title">Country API</h1>
+        <h1 class="pageHeader__title" draggable="false">Country API</h1>
         <form class="pageHeader__search" id="search">
-            <input type="search" placeholder="search for a country..." class="pageHeader__search__input" name="countryName" id="searchInput">
-            <img alt="search" src="public/assets/busqueda.png" class="pageHeader__search__icon">
+            <img alt="search" src="public/assets/busqueda.png" class="pageHeader__search__icon" draggable="false">
+            <input type="search" placeholder="Search for a country..." class="pageHeader__search__input" name="countryName" id="searchInput">
         </form>
     </header>
     <main class="pageMain" id="main">
-        
     </main>
+    <article class="errorMsg hidden" id="errorMsg">
+        <p class="errorMsg__title">404 : Country not found</p>
+        <img class="errorMsg__img" alt="an error has ocurred" src="public/assets/404-error.png">
+        <p class="errorMsg__subtitle">Maybe you should try again</p>
+    </article>
     <template id="countryTemplate">
         <article class="country">
             <div class="country__flags">
-                <img alt="" src="" class="country__mainFlag">
-                <img alt="" src="" class="country__coatOfArms">
+                <img alt="" src="" class="country__flags__mainFlag" draggable="false">
+                <img alt="" src="" class="country__flags__coatOfArms" draggable="false">
             </div>
             <div class="country__info">
                 <p class="country__info__offiname">Official name:<span class="content"></span></p>

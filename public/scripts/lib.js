@@ -17,7 +17,11 @@ export const  $ = {
         element.textContent = txt
         return element
     },
-    ev : (el,type,fn) => el.addEventListener(type,fn)
+    ev : (el,type,fn) => el.addEventListener(type,fn),
+    addClass : (el,className) => el.classList.add(className),
+    removeClass : (el,className) => el.classList.remove(className),
+    hide : (el) => $.addClass(el,'hidden'),
+    show : (el) => $.removeClass(el,'hidden')
 }
 
 

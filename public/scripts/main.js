@@ -3,15 +3,16 @@ import {$} from '../scripts/lib.js'
 async function main(){
     const main = $.id('main'),
     searchForm = $.id('search'),
-    searchInput = $.id('searchInput')
+    searchInput = $.id('searchInput'),
+    errorMsg = $.id('errorMsg')
     const setCountryData = (data)=>{
         const template = $.id('countryTemplate').content.cloneNode(true),
         countryElement = $.query(template,'.country'),
         fragment = $.frag(),
         setCtrEl = (cl,txt) => $.setContent($.query(countryElement,`.country__info__${cl}`),txt)
 
-        $.setImage($.query(countryElement,'.country__mainFlag'),data.flags.svg,data.flags.alt)
-        $.setImage($.query(countryElement,'.country__coatOfArms'),data.coatOfArms.svg,`coat of arms from ${data.name.official}`)
+        $.setImage($.query(countryElement,'.country__flags__mainFlag'),data.flags.svg,data.flags.alt)
+        $.setImage($.query(countryElement,'.country__flags__coatOfArms'),data.coatOfArms.svg,data.coatOfArms.svg ? `coat of arms from ${data.name.official}`:"")
         setCtrEl('offiname',data.name.nativeName[Object.keys(data.name.nativeName)[0]].official)
         setCtrEl('commname',data.name.nativeName[Object.keys(data.name.nativeName)[0]].common)
         setCtrEl('capital',data.capital[0])
@@ -28,9 +29,10 @@ async function main(){
     async function buildContry(cname){
         const data  = await $.toFetchCountry(cname)
         if(data.status === 404){
-            
+            $.show(errorMsg)
             return
         }
+        $.hide(errorMsg)
         data.forEach(countryData => setCountryData(countryData))
     }
     $.ev(searchForm,'submit',(e)=>{
