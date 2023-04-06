@@ -4,7 +4,8 @@ async function main(){
     const main = $.id('main'),
     searchForm = $.id('search'),
     searchInput = $.id('searchInput'),
-    errorMsg = $.id('errorMsg')
+    errorMsg = $.id('errorMsg'),
+    loader = $.id('loader')
     const setCountryData = (data)=>{
         const template = $.id('countryTemplate').content.cloneNode(true),
         countryElement = $.query(template,'.country'),
@@ -24,11 +25,15 @@ async function main(){
 
         fragment.append(countryElement)
         main.append(fragment)
+        $.hide(loader)
         
     }
     async function buildContry(cname){
+        $.hide(errorMsg)
+        $.show(loader)
         const data  = await $.toFetchCountry(cname)
         if(data.status === 404){
+            $.hide(loader)
             $.show(errorMsg)
             return
         }
