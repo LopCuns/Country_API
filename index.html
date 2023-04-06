@@ -13,6 +13,7 @@
         <form class="pageHeader__search" id="search">
             <img alt="search" src="public/assets/busqueda.png" class="pageHeader__search__icon" draggable="false">
             <input type="search" placeholder="Search for a country..." class="pageHeader__search__input" name="countryName" id="searchInput">
+            <div class="pageHeader__search__suggestions"  id="searchSuggestions" tabindex="0"></div>
         </form>
     </header>
     <main class="pageMain" id="main">
@@ -41,6 +42,12 @@
                 <p class="country__info__map">map <a class="country__info__map__link" href="" target="_blank"></a></p>
             </div>
         </article>
+    </template>
+    <template id="searchSuggestionTemplate">
+        <div class="searchSuggestion">
+            <p class="searchSuggestion__content content"></p>
+            <img class="searchSuggestion__delete" alt="delete" src="public/assets/cross-svgrepo-com.svg">
+        </div>
     </template>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script type="module" src="public/scripts/main.js"></script>

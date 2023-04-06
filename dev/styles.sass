@@ -29,17 +29,40 @@ $semiLightBlue : #8ef3f3
         font-family: $fm
     &__search
         @include vm.flex()
-        overflow: hidden
+        position: relative
         border-radius: 10px
         background-color: #fff
         &__input
             padding: .5rem 1rem
             border: none
+            border-radius: 10px
             outline: none
             font-family: $fm
         &__icon
             width: 1.5rem
+        &:focus-within > &__suggestions
+            opacity: 1
+            pointer-events: all
+            
+        &__suggestions
+            position: absolute
+            top: 120%
+            width: 100%
+            border-radius: 10px
+            background-color: #fff
+            opacity: 0
+            pointer-events: none
+            z-index: 1
 
+.searchSuggestion
+    @include vm.flex($justify: space-between)
+    padding: 0 1rem
+    cursor: pointer
+    &__content
+        font-family: $fm
+    &__delete
+        width: 1.3rem
+        
 .country
     @include vm.flex($justify: space-around)
     margin-bottom: 2rem

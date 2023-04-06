@@ -21,7 +21,13 @@ export const  $ = {
     addClass : (el,className) => el.classList.add(className),
     removeClass : (el,className) => el.classList.remove(className),
     hide : (el) => $.addClass(el,'hidden'),
-    show : (el) => $.removeClass(el,'hidden')
+    show : (el) => $.removeClass(el,'hidden'),
+    append : (parent,node) => parent.prepend(node),
+    appendToLimit : (parent,node,limit) => {
+        $.append(parent,node)
+        if(Array.from(parent.children).length > limit) parent.removeChild(parent.lastElementChild)
+    },
+    getTemplate : (id) => $.id(id).content.cloneNode(true)
 }
 
 

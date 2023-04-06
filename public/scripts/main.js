@@ -5,9 +5,30 @@ async function main(){
     searchForm = $.id('search'),
     searchInput = $.id('searchInput'),
     errorMsg = $.id('errorMsg'),
-    loader = $.id('loader')
+    loader = $.id('loader'),
+    searchSuggestions = $.id('searchSuggestions')
+    
+    $.ev(searchSuggestions,'click',(e)=>{
+        if(e.target.alt ==='delete'){
+            searchSuggestions.removeChild(e.target.parentNode)
+            return
+        }
+        const searchSuggestionElement = e.target.closest('.searchSuggestion'),
+        suggestionContent = $.query(searchSuggestionElement,'.content').textContent
+        searchSuggestions.removeChild(searchSuggestionElement)
+        buildContry(suggestionContent)
+
+        
+    })
+    const createSearchSuggestion = (content) =>{
+        const template = $.getTemplate('searchSuggestionTemplate'),
+        suggestionElement = $.query(template,'.searchSuggestion')
+        $.setContent(suggestionElement,content)
+        $.appendToLimit(searchSuggestions,suggestionElement,5)
+    }
+
     const setCountryData = (data)=>{
-        const template = $.id('countryTemplate').content.cloneNode(true),
+        const template = $.getTemplate('countryTemplate'),
         countryElement = $.query(template,'.country'),
         fragment = $.frag(),
         setCtrEl = (cl,txt) => $.setContent($.query(countryElement,`.country__info__${cl}`),txt)
@@ -29,6 +50,8 @@ async function main(){
         
     }
     async function buildContry(cname){
+        main.textContent = ""
+        searchInput.value = ""
         $.hide(errorMsg)
         $.show(loader)
         const data  = await $.toFetchCountry(cname)
@@ -38,13 +61,12 @@ async function main(){
             return
         }
         $.hide(errorMsg)
+        createSearchSuggestion(cname)
         data.forEach(countryData => setCountryData(countryData))
     }
     $.ev(searchForm,'submit',(e)=>{
         e.preventDefault()
-        main.textContent = ""
         buildContry(searchInput.value)
-        searchInput.value = ""
     })
 }
 main()
